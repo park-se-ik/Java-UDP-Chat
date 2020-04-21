@@ -17,7 +17,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane; //°æ°íÃ¢¸Þ½ÃÁö
+import javax.swing.JOptionPane; //ê²½ê³ ì°½ë©”ì‹œì§€
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -34,8 +34,8 @@ import javax.swing.text.Document;
 	   	private JPanel panelA = new JPanel();
 	   	private JPanel panelB = new JPanel();
 	   	private JPanel card2 = new JPanel();
-	   	private JButton btn = new JButton("È¸¿ø°¡ÀÔ");//È¸¿ø°¡ÀÔ''
-	   	private JButton btn1 = new JButton("·Î±×ÀÎ");//·Î±×ÀÎ
+	   	private JButton btn = new JButton("íšŒì›ê°€ìž…");//íšŒì›ê°€ìž…''
+	   	private JButton btn1 = new JButton("ë¡œê·¸ì¸");//ë¡œê·¸ì¸
 	   	private JLabel label1 = new JLabel("ID   :   ");
 	   	private JLabel label2 = new JLabel("PWD : ");
 	   	static JTextField T1 = new JTextField(20);
@@ -45,7 +45,7 @@ import javax.swing.text.Document;
 		static boolean fact1 = false;
 		
 		static String i1= "0",i2 = "0";
-		File file = new File("D:\\java½Ç½À\\ChatProgram\\Writer.txt");
+		File file = new File("D:\\javaì‹¤ìŠµ\\ChatProgram\\Writer.txt");
 		
 		ClientFrame cf;
 	   	WriteThread wt;    
@@ -79,22 +79,22 @@ import javax.swing.text.Document;
     	  
     	  
     	  
-    	   if(e.getSource() == btn){ //btnÀº È¸¿ø°¡ÀÔ 
-    		  //°ªÀ» ¹Þ¾Æ¼­ ÆÄÀÏ¼Ó¿¡ ÀÔ·ÂÇØ¾ßÇÔ
+    	   if(e.getSource() == btn){ //btnì€ íšŒì›ê°€ìž… 
+    		  //ê°’ì„ ë°›ì•„ì„œ íŒŒì¼ì†ì— ìž…ë ¥í•´ì•¼í•¨
     		   register rg = new register();
 	    		try{ 
-	    			this.hide();	//¾²´ø°ÍµéÀ» ¼û±â±â
+	    			this.hide();	//ì“°ë˜ê²ƒë“¤ì„ ìˆ¨ê¸°ê¸°
 	    			//i1 = T1.getText();
 	    			//i2 = P1.getText();    	
-	    			rg.setVisible(true); //register Å¬·¡½º¸¦ ½ÇÇàÇØ¾ß È¸¿ø°¡ÀÔÀ» ÇÒ¼öÀÖ°í ¿©±â¼­ ¾ÆÀÌµð°¡ ÀÖ´Â ¾ÆÀÌµðÀÎÁö ¾Æ´ÑÁö °Ë»ç¸¦ ÇÑ´Ù.
+	    			rg.setVisible(true); //register í´ëž˜ìŠ¤ë¥¼ ì‹¤í–‰í•´ì•¼ íšŒì›ê°€ìž…ì„ í• ìˆ˜ìžˆê³  ì—¬ê¸°ì„œ ì•„ì´ë””ê°€ ìžˆëŠ” ì•„ì´ë””ì¸ì§€ ì•„ë‹Œì§€ ê²€ì‚¬ë¥¼ í•œë‹¤.
 	    		   	if(i1 == "0"){
-						JOptionPane.showMessageDialog(null, "ÀÔ·ÂÀ» ÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
+						JOptionPane.showMessageDialog(null, "ìž…ë ¥ì„ í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
 					}
 	    		}catch(NullPointerException e1) {
 	    			System.out.println(e);
 	    		}
     	   }
-    	   else if(e.getSource()== btn1){//·Î±×ÀÎ
+    	   else if(e.getSource()== btn1){//ë¡œê·¸ì¸
     		   MemberDAO dao = new MemberDAO();
     		   String ID = T1.getText();
     		   String PW = P1.getText();
@@ -105,16 +105,16 @@ import javax.swing.text.Document;
     				   new NewWindow(wt,cf);
     			   }
     			   else {
-    				   JOptionPane.showMessageDialog(null, "ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö¾Ê½À´Ï´Ù.");
+    				   JOptionPane.showMessageDialog(null, "ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ì•ŠìŠµë‹ˆë‹¤.");
     			   }
     				  
     		   }
     		   else {
-    			   JOptionPane.showMessageDialog(null, "ÀÔ·ÂÇÏ½Å ID¿Í ÀÏÄ¡ÇÏ´Â Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+    			   JOptionPane.showMessageDialog(null, "ìž…ë ¥í•˜ì‹  IDì™€ ì¼ì¹˜í•˜ëŠ” ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
     		   }
     		  
     		   if(i1 == "" || i2 ==""){
-					JOptionPane.showMessageDialog(null, "ÀÔ·ÂÀ» ÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
+					JOptionPane.showMessageDialog(null, "ìž…ë ¥ì„ í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
 				}
                
     	   }
@@ -129,13 +129,13 @@ import javax.swing.text.Document;
 	
 
  class register extends JFrame implements ActionListener{
-		private JButton btn3 = new JButton("Áßº¹");//È¸¿ø°¡ÀÔ µé¾î°¬À» ¶§ ¸¸µé±â ÇÑ °Í
-		private JButton btn4 = new JButton("Áßº¹");//È¸¿ø°¡ÀÔ µé¾î°¬À» ¶§ ¸¸µé±â ÇÑ °Í
+		private JButton btn3 = new JButton("ì¤‘ë³µ");//íšŒì›ê°€ìž… ë“¤ì–´ê°”ì„ ë•Œ ë§Œë“¤ê¸° í•œ ê²ƒ
+		private JButton btn4 = new JButton("ì¤‘ë³µ");//íšŒì›ê°€ìž… ë“¤ì–´ê°”ì„ ë•Œ ë§Œë“¤ê¸° í•œ ê²ƒ
 	 	private JLabel label3 = new JLabel("IP  :  ");
 		private JLabel label4 = new JLabel("ID  :  ");
 		private JLabel label5 = new JLabel("PWD  :  ");
-		private JLabel label6 = new JLabel("PWDÈ®ÀÎ : ");
-		private JButton btn5 = new JButton("È¸¿ø°¡ÀÔ");//È¸¿ø°¡ÀÔ µé¾î°¬À» ¶§ ¸¸µé±â ÇÑ °Í
+		private JLabel label6 = new JLabel("PWDí™•ì¸ : ");
+		private JButton btn5 = new JButton("íšŒì›ê°€ìž…");//íšŒì›ê°€ìž… ë“¤ì–´ê°”ì„ ë•Œ ë§Œë“¤ê¸° í•œ ê²ƒ
 		private JTextField T2 = new JTextField(15);
 		private JTextField T3 = new JTextField(15) ;
 		private JTextField pw1 = new JPasswordField(20);
@@ -156,7 +156,7 @@ import javax.swing.text.Document;
 		WriteThread wt;
 		ClientFrame cf;
 		public register() {
-			this.setTitle("È¸¿ø°¡ÀÔ");
+			this.setTitle("íšŒì›ê°€ìž…");
 			this.setSize(320,220);
 			
 			panel.add(label3);
@@ -181,7 +181,7 @@ import javax.swing.text.Document;
 			p2.setPreferredSize(new Dimension(350,30));
 			
 			
-			//ºñ¹Ð¹øÈ£ ÀÏÄ¡ È®ÀÎÇÏ´Â °ÍÀÌ ÇÊ¿ä
+			//ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜ í™•ì¸í•˜ëŠ” ê²ƒì´ í•„ìš”
 			panel.add(p1);
 			panel.add(p2);
 			panel.add(label6);
@@ -193,17 +193,17 @@ import javax.swing.text.Document;
 			this.setVisible(true);
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
-		File file = new File("D:\\java½Ç½À\\ChatProgram\\Writer.txt");
+		File file = new File("D:\\javaì‹¤ìŠµ\\ChatProgram\\Writer.txt");
 		String i1="0",i2="0",i3= "0";
 		 public MemberDTO getViewData(){
 		       
-		        //È­¸é¿¡¼­ »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ ³»¿ëÀ» ¾ò´Â´Ù.
+		        //í™”ë©´ì—ì„œ ì‚¬ìš©ìžê°€ ìž…ë ¥í•œ ë‚´ìš©ì„ ì–»ëŠ”ë‹¤.
 		        MemberDTO dto = new MemberDTO();
 		        String IP = T2.getText();
 		        String ID = T3.getText();
 		        String PW1 = pw1.getText();
 		       	
-		        //dto¿¡ ´ã´Â´Ù.
+		        //dtoì— ë‹´ëŠ”ë‹¤.
 		        dto.setIP(IP);
 		        dto.setID(ID);
 		        dto.setPassword(PW1);
@@ -217,79 +217,14 @@ import javax.swing.text.Document;
 	        boolean ok = dao.insertMember(dto);
 	       
 	        if(ok) {
-	            JOptionPane.showMessageDialog(this, "°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+	            JOptionPane.showMessageDialog(this, "ê°€ìž…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 	            new Id(wt,cf);
 	        }else{ 
-	            JOptionPane.showMessageDialog(this, "°¡ÀÔÀÌ Á¤»óÀûÀ¸·Î Ã³¸®µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+	            JOptionPane.showMessageDialog(this, "ê°€ìž…ì´ ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 	            new register();
 	        }
 	       	       
 	    }//insertMember
-		
-		public void actionPerformed(ActionEvent e){
-			MemberDAO dao = new MemberDAO();
-			if(e.getSource()== btn3) { //Áßº¹
-				
-				String IP = T2.getText();
-				if(dao.getMemberDTOip(IP)) {
-					FBconf = false;
-					 JOptionPane.showMessageDialog(this, "Áßº¹µÈ ¾ÆÀÌÇÇ°¡ Á¸ÀçÇÕ´Ï´Ù.");
-				}
-					
-				else {
-					FBconf = true;
-					 JOptionPane.showMessageDialog(this, "»ç¿ë°¡´ÉÇÑ ¾ÆÀÌÇÇ ÀÔ´Ï´Ù");
-				}
-			}
-			else if(e.getSource()== btn4) { //Áßº¹
-				String ID = T2.getText();
-				if(dao.getMemberDTOid(ID)) {
-					SBconf = false;
-					 JOptionPane.showMessageDialog(this, "Áßº¹µÈ ¾ÆÀÌµð°¡ Á¸ÀçÇÕ´Ï´Ù.");
-				}
-					
-				else {
-					SBconf = true;
-					 JOptionPane.showMessageDialog(this, "»ç¿ë°¡´ÉÇÑ ¾ÆÀÌµðÀÔ´Ï´Ù.");
-				}	
-			}
-			else if(e.getSource()==pw1 || e.getSource()==pw2) {
-				
-				s1 = (String)pw1.getText();
-				s2 = (String)pw2.getText();
-			}
-			
-			else if(e.getSource()== btn5) {//È¸¿ø°¡ÀÔ´©¸¦½Ã
-				
-				
-				if(FBconf ==true && SBconf==true) {
-					Id id= new Id();
-					insertMember();
-					s1 = (String)pw1.getText();
-					s2 = (String)pw2.getText();
-						if(s1.equals(s2)) {
-							PWconf = !PWconf;
-						}
-						if(PWconf == false) {
-							JOptionPane.showMessageDialog(null, "ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö¾Ê½À´Ï´Ù");
-						}
-						else {
-							this.hide();
-							//id = new Id(wt.cf);
-							id.setVisible(true);
-						}							 
-				}
-				else if(FBconf== true && SBconf == false) {
-					JOptionPane.showMessageDialog(null, "¾ÆÀÌµð Áßº¹È®ÀÎÀ» ÇØÁÖ¼¼¿ä");
-				}
-				else if(FBconf== false && SBconf == true) {
-					JOptionPane.showMessageDialog(null, "IP Áßº¹È®ÀÎÀ» ÇØÁÖ¼¼¿ä");
-				}
-				else if(FBconf== false && SBconf == false) {
-					JOptionPane.showMessageDialog(null, "Ã¤ÆÃÇÏ°í½ÍÀ¸¸é ID,IP Áßº¹È®ÀÎÇØ¶ó ^^");
-				}
-			}
-		}		
  }
 
  
@@ -300,15 +235,15 @@ class NewWindow extends JFrame implements ActionListener,ItemListener,MouseListe
 	String number[] = {"2","3","4"}; 
 	private JTextField t1;
 	private JPanel panel= new JPanel();
-	private JButton btn  = new JButton("»ý¼º");
-	private JButton btn1  = new JButton("ÀÔÀå");
+	private JButton btn  = new JButton("ìƒì„±");
+	private JButton btn1  = new JButton("ìž…ìž¥");
 	private JPanel Lpanel0 = new JPanel();
 	private JPanel Rpanel0 = new JPanel();
 	private JPanel panel1 = new JPanel();
-	private JLabel Flabel0 = new JLabel("Ã¤ÆÃÃ¢ÀÌ¸§");
-	private JLabel Slabel0 = new JLabel("ºñ¹Ð¹øÈ£");
-	private JLabel Flabel01 = new JLabel("Ã¤ÆÃÃ¢ÀÌ¸§");
-	private JLabel Slabel01 = new JLabel("ºñ¹Ð¹øÈ£");
+	private JLabel Flabel0 = new JLabel("ì±„íŒ…ì°½ì´ë¦„");
+	private JLabel Slabel0 = new JLabel("ë¹„ë°€ë²ˆí˜¸");
+	private JLabel Flabel01 = new JLabel("ì±„íŒ…ì°½ì´ë¦„");
+	private JLabel Slabel01 = new JLabel("ë¹„ë°€ë²ˆí˜¸");
 	private JCheckBox CHB = new  JCheckBox("");
 	private JTextField FT = new JTextField(20);
 	private JPasswordField PST = new JPasswordField(18);
@@ -320,13 +255,13 @@ class NewWindow extends JFrame implements ActionListener,ItemListener,MouseListe
 	DefaultTableModel dtm;
 	private JScrollPane BSP;
 	private JComboBox CB = new JComboBox(number);
-	boolean password = false; //ºñ¹Ð¹øÈ£ ¼³Á¤ ¿©ºÎ
+	boolean password = false; //ë¹„ë°€ë²ˆí˜¸ ì„¤ì • ì—¬ë¶€
 	boolean fact = false;
 	static String pw;
 	static String pass;
-	int Rnum = 0; //¹æ¹øÈ£ ¼³Á¤
+	int Rnum = 0; //ë°©ë²ˆí˜¸ ì„¤ì •
 	int ConN = 1;
-	boolean F = false; //ÆÐ½º¿öµå°ª  ºñ±³¸¦ RSPÅëÇØ¼­ ÇÏ±â À§ÇÑ º¯¼ö
+	boolean F = false; //íŒ¨ìŠ¤ì›Œë“œê°’  ë¹„êµë¥¼ RSPí†µí•´ì„œ í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 	
 	WriteThread wt;    
     ClientFrame cf;
@@ -349,176 +284,7 @@ class NewWindow extends JFrame implements ActionListener,ItemListener,MouseListe
 		FT.addActionListener(this);
 		Flabel0.setLocation(200, 200);
 		Lpanel0.add(Slabel0);
-		Lpanel0.add(CHB);
-		CHB.addActionListener(this);
-		CHB.addItemListener(this);
-		Lpanel0.add(PST);
-		PST.setEditable(fact);
-		PST.addActionListener(this);
-		CB.setBounds(50,50,90,20);
-		CB.addActionListener(this);
-		Lpanel0.add(CB);
-		Lpanel0.add(btn);
-		btn.addActionListener(this);
-		Lpanel0.setPreferredSize(new Dimension(300,200));
-	
 		
-		Header.add("¹øÈ£");
-		Header.add("Ã¤ÆÃ¹æÀÌ¸§");
-		Header.add("Á¢¼ÓÁßÀÎ ÀÎ¿ø¼ö");
-		Header.add("ÃÖ´ë Á¢¼Ó °¡´É¼ö");
-		Header.add("ºñ¹Ð¹øÈ£ ¿©ºÎ");
-		dtm = new DefaultTableModel(Contents,Header) {
-			public boolean isCellEditable(int row, int column) {
-	        if (column >= 0) {
-	            return false;
-	        } else {
-	            return true;
-	        }
-	    }};
-		table = new JTable(dtm);
-		BSP = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		
-		Rpanel0.add(BSP);
-		BSP.setPreferredSize(new Dimension(300,200));
-		Rpanel0.add(Flabel01);
-		Rpanel0.add(RFT);
-		Rpanel0.add(Slabel01);
-		Rpanel0.add(RSP);
-		RSP.setEditable(F);
-		RSP.addActionListener(this);
-		Rpanel0.add(btn1);
-		btn1.addActionListener(this);
-		Rpanel0.setSize(10,10);
-		Rpanel0.setPreferredSize(new Dimension(300,300));
-		
-		panel.setLayout(new BorderLayout());
-		panel.add(Lpanel0,BorderLayout.WEST);
-		panel.add(Rpanel0,BorderLayout.CENTER);
-		
-		table.addMouseListener(this);
-		this.add(panel);
-		if(Id.fact1)
-			this.setVisible(true);
-	}
-	
-	public Vector<String> makeInVector(String[] array) {
-		Vector<String> in = new Vector<>();
-		for(String data : array){
-			in.add(data);
-			}		
-			return in;
-		}
-
-		public void itemStateChanged(ItemEvent e) {
-		if(e.getStateChange() == ItemEvent.SELECTED) {
-			password = true;
-			fact = true;
-			PST.setEditable(fact);
-		}
-		else {
-			password = false;
-			fact = false;
-			PST.setEditable(fact);
-		
-		}
-	}
-	
-	public void actionPerformed(ActionEvent e) {
-		Vector bowl = new Vector<>(5);
-		/*if(e.getSource()== CHB) {
-			PST.setEditable(fact);
-		}*/
-		
-		if( e.getSource() == btn  ) {// »ý¼º¹öÆ° »ç¿ë½Ã
-				if( password ==true ) { //¶óµð¿À¹öÆ°À» ´©¸¥ »óÅÂ	
-						String s1 = FT.getText();
-						int a = ++Rnum;
-						bowl.add(makeInVector(new String[] {""+a,""+s1,"0",""+(String)CB.getSelectedItem(),"O"}));
-						pw = PST.getText();
-						for(int i = 0; i<5;i++) {
-							Contents.addAll(bowl);
-							bowl.clear();
-						}
-						dtm.setDataVector(Contents, Header);
-						FT.setText("");
-						PST.setText("");
-					}
-				else {
-					/*input[0] = ++Rnum;
-					input[1] = FT.getText();	
-					input[2] = 0;
-					input[3] = CB.getSelectedItem().toString();
-					input[4] = "X";
-					dtm.addRow(input);*/
-					int a = ++Rnum;
-					String s1 = FT.getText();
-					
-					bowl.add(makeInVector(new String[] {""+Rnum,""+s1,"0",""+(String)CB.getSelectedItem(),"X"}));
-					for(int i = 0; i<5;i++) {
-						Contents.addAll(bowl);
-						bowl.clear();
-					}
-						
-					dtm.setDataVector(Contents, Header);
-					FT.setText("");
-					PST.setText("");
-				
-					
-				}
-				
-		}
-		if(F == true) {
-			 if (e.getSource() == btn1){//ÀÔÀå
-				 	
-				 if(pw.equals(RSP.getText())) {
-						wt.sendMsg();
-					 	cf.isFirst = false;
-					 	cf.setVisible(true);
-					 	//this.hide();
-					 	F = false;
-						PST.setEditable(F);
-		               //this.hide();
-						this.hide();	//¾²´ø°ÍµéÀ» ¼û±â±â
-						
-					 
-				 }
-			 }
-		}
-		
-		
-		
-		
-	}
-	
-	public void mouseClicked(MouseEvent e) {
-		 int row = table.getSelectedRow();
-		 String value = (String)dtm.getValueAt(row,1) ;
-		 pass = (String)dtm.getValueAt(row,4) ;
-		 RFT.setText(""+value);
-		 if(pass.equals("O")) {
-			 F = true;
-			 RSP.setEditable(F);
-			
-		 }
-		
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-    @Override//¸¶¿ì½º°¡ ¹öÆ° ¾ÈÀ¸·Î µé¾î¿À¸é »¡°£»öÀ¸·Î ¹Ù²ñ
-    public void mouseEntered(MouseEvent e) {
-       
-    }
-    @Override//¸¶¿ì½º°¡ ¹öÆ° ¹ÛÀ¸·Î ³ª°¡¸é ³ë¶õ»öÀ¸·Î ¹Ù²ñ
-    public void mouseExited(MouseEvent e) {
-        
-    }
-
 	
 	
 }
@@ -526,9 +292,9 @@ class NewWindow extends JFrame implements ActionListener,ItemListener,MouseListe
 public class ClientFrame extends JFrame implements ActionListener{
        JTextArea txtA = new JTextArea();
        JTextField txtF = new JTextField(15);
-       JButton btnTransfer = new JButton("Àü¼Û");
-       JButton btnChb = new JButton("¹Ù²ÙÀÚ");
-       JButton btnExit = new JButton("´Ý±â");
+       JButton btnTransfer = new JButton("ì „ì†¡");
+       JButton btnChb = new JButton("ë°”ê¾¸ìž");
+       JButton btnExit = new JButton("ë‹«ê¸°");
        boolean isFirst=true;
        JPanel p1 = new JPanel();
        Socket socket;
@@ -537,7 +303,7 @@ public class ClientFrame extends JFrame implements ActionListener{
       
        
        public ClientFrame(Socket socket) {
-             super("Ã¤ÆÃÀÌ³ª ÇØº¼±î");
+             super("ì±„íŒ…ì´ë‚˜ í•´ë³¼ê¹Œ");
              this.socket = socket;
              wt = new WriteThread(this);
              //new Id();
@@ -548,7 +314,7 @@ public class ClientFrame extends JFrame implements ActionListener{
              //p1.add(btnChb);
              p1.add(btnExit);
              add("South", p1);          
-             //¸Þ¼¼Áö¸¦ Àü¼ÛÇÏ´Â Å¬·¡½º »ý¼º
+             //ë©”ì„¸ì§€ë¥¼ ì „ì†¡í•˜ëŠ” í´ëž˜ìŠ¤ ìƒì„±
              btnTransfer.addActionListener(this);
              btnExit.addActionListener(this);
              setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -561,8 +327,8 @@ public class ClientFrame extends JFrame implements ActionListener{
        public void actionPerformed(ActionEvent e){
     	 
              String id = Id.getId();
-             if(e.getSource()==btnTransfer){//Àü¼Û¹öÆ° ´­·¶À» °æ¿ì
-                    //¸Þ¼¼Áö ÀÔ·Â¾øÀÌ Àü¼Û¹öÆ°¸¸ ´­·¶À» °æ¿ì
+             if(e.getSource()==btnTransfer){//ì „ì†¡ë²„íŠ¼ ëˆŒë €ì„ ê²½ìš°
+                    //ë©”ì„¸ì§€ ìž…ë ¥ì—†ì´ ì „ì†¡ë²„íŠ¼ë§Œ ëˆŒë €ì„ ê²½ìš°
                     if(txtF.getText().equals("")){
                            return;
                     }                  
