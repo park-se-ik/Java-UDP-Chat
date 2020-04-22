@@ -137,7 +137,7 @@ import javax.swing.text.Document;
 	        }
 	       	       
 	    }//insertMember
-		
+	
 		public void actionPerformed(ActionEvent e){
 			MemberDAO dao = new MemberDAO();
 			if(e.getSource()== btn3) { //ม฿บน
