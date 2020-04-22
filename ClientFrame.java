@@ -38,7 +38,6 @@ import javax.swing.text.Document;
        }
 }
 
-
 	
 
  class register extends JFrame implements ActionListener{
