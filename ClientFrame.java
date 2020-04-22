@@ -17,7 +17,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane; //°æ°íÃ¢¸Ş½ÃÁö
+import javax.swing.JOptionPane; //ê²½ê³ ì°½ë©”ì‹œì§€
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -30,7 +30,98 @@ import javax.swing.text.Document;
 
  class Id extends JFrame implements ActionListener{
 	 	
+<<<<<<< HEAD
         
+=======
+        private JPanel card1 = new JPanel();
+	   	private JPanel panelA = new JPanel();
+	   	private JPanel panelB = new JPanel();
+	   	private JPanel card2 = new JPanel();
+	   	private JButton btn = new JButton("íšŒì›ê°€ì…");//íšŒì›ê°€ì…''
+	   	private JButton btn1 = new JButton("ë¡œê·¸ì¸");//ë¡œê·¸ì¸
+	   	private JLabel label1 = new JLabel("ID   :   ");
+	   	private JLabel label2 = new JLabel("PWD : ");
+	   	static JTextField T1 = new JTextField(20);
+		private JPasswordField P1 = new JPasswordField(20);
+		//static boolean Test = false;
+		//private CardLayout card;
+		static boolean fact1 = false;
+		
+		static String i1= "0",i2 = "0";
+		File file = new File("D:\\javaì‹¤ìŠµ\\ChatProgram\\Writer.txt");
+		
+		ClientFrame cf;
+	   	WriteThread wt;    
+	    register rg;
+	    NewWindow nw;
+	    //public Id(WriteThread wt, ClientFrame cf){}
+	    public Id() {};
+	    public Id(WriteThread wt, ClientFrame cf) {
+	    	  this.wt = wt;
+	          this.cf = cf;
+            
+             this.setSize(300,200);
+             panelA.add(label1);
+             panelA.add(T1);
+             card1.add(panelA,BorderLayout.CENTER);
+             panelB.add(label2);
+             panelB.add(P1);
+             card1.add(panelB,BorderLayout.CENTER);
+             card1.add(btn);
+             card1.add(btn1);
+             
+             this.add(card1);
+             btn.addActionListener(this);
+             btn1.addActionListener(this);
+             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             setVisible(true);
+
+       }
+	    
+      public void actionPerformed(ActionEvent e) {     
+    	  
+    	  
+    	  
+    	   if(e.getSource() == btn){ //btnì€ íšŒì›ê°€ì… 
+    		  //ê°’ì„ ë°›ì•„ì„œ íŒŒì¼ì†ì— ì…ë ¥í•´ì•¼í•¨
+    		   register rg = new register();
+	    		try{ 
+	    			this.hide();	//ì“°ë˜ê²ƒë“¤ì„ ìˆ¨ê¸°ê¸°
+	    			//i1 = T1.getText();
+	    			//i2 = P1.getText();    	
+	    			rg.setVisible(true); //register í´ë˜ìŠ¤ë¥¼ ì‹¤í–‰í•´ì•¼ íšŒì›ê°€ì…ì„ í• ìˆ˜ìˆê³  ì—¬ê¸°ì„œ ì•„ì´ë””ê°€ ìˆëŠ” ì•„ì´ë””ì¸ì§€ ì•„ë‹Œì§€ ê²€ì‚¬ë¥¼ í•œë‹¤.
+	    		   	if(i1 == "0"){
+						JOptionPane.showMessageDialog(null, "ì…ë ¥ì„ í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+					}
+	    		}catch(NullPointerException e1) {
+	    			System.out.println(e);
+	    		}
+    	   }
+    	   else if(e.getSource()== btn1){//ë¡œê·¸ì¸
+    		   MemberDAO dao = new MemberDAO();
+    		   String ID = T1.getText();
+    		   String PW = P1.getText();
+    		   if(dao.getMemberDTOid(ID)) {
+    			   if(dao.getMemberDTOpw(PW)) {
+    				   this.hide();	
+    				   fact1 = true;
+    				   new NewWindow(wt,cf);
+    			   }
+    			   else {
+    				   JOptionPane.showMessageDialog(null, "ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ì•ŠìŠµë‹ˆë‹¤.");
+    			   }
+    				  
+    		   }
+    		   else {
+    			   JOptionPane.showMessageDialog(null, "ì…ë ¥í•˜ì‹  IDì™€ ì¼ì¹˜í•˜ëŠ” ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
+    		   }
+    		  
+    		   if(i1 == "" || i2 ==""){
+					JOptionPane.showMessageDialog(null, "ì…ë ¥ì„ í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
+				}
+               
+    	   }
+>>>>>>> refs/remotes/origin/master
             
        }
        static public String getId(){
@@ -41,13 +132,13 @@ import javax.swing.text.Document;
 
 
  class register extends JFrame implements ActionListener{
-		private JButton btn3 = new JButton("Áßº¹");//È¸¿ø°¡ÀÔ µé¾î°¬À» ¶§ ¸¸µé±â ÇÑ °Í
-		private JButton btn4 = new JButton("Áßº¹");//È¸¿ø°¡ÀÔ µé¾î°¬À» ¶§ ¸¸µé±â ÇÑ °Í
+		private JButton btn3 = new JButton("ì¤‘ë³µ");//íšŒì›ê°€ì… ë“¤ì–´ê°”ì„ ë•Œ ë§Œë“¤ê¸° í•œ ê²ƒ
+		private JButton btn4 = new JButton("ì¤‘ë³µ");//íšŒì›ê°€ì… ë“¤ì–´ê°”ì„ ë•Œ ë§Œë“¤ê¸° í•œ ê²ƒ
 	 	private JLabel label3 = new JLabel("IP  :  ");
 		private JLabel label4 = new JLabel("ID  :  ");
 		private JLabel label5 = new JLabel("PWD  :  ");
-		private JLabel label6 = new JLabel("PWDÈ®ÀÎ : ");
-		private JButton btn5 = new JButton("È¸¿ø°¡ÀÔ");//È¸¿ø°¡ÀÔ µé¾î°¬À» ¶§ ¸¸µé±â ÇÑ °Í
+		private JLabel label6 = new JLabel("PWDí™•ì¸ : ");
+		private JButton btn5 = new JButton("íšŒì›ê°€ì…");//íšŒì›ê°€ì… ë“¤ì–´ê°”ì„ ë•Œ ë§Œë“¤ê¸° í•œ ê²ƒ
 		private JTextField T2 = new JTextField(15);
 		private JTextField T3 = new JTextField(15) ;
 		private JTextField pw1 = new JPasswordField(20);
@@ -68,7 +159,7 @@ import javax.swing.text.Document;
 		WriteThread wt;
 		ClientFrame cf;
 		public register() {
-			this.setTitle("È¸¿ø°¡ÀÔ");
+			this.setTitle("íšŒì›ê°€ì…");
 			this.setSize(320,220);
 			
 			panel.add(label3);
@@ -93,7 +184,7 @@ import javax.swing.text.Document;
 			p2.setPreferredSize(new Dimension(350,30));
 			
 			
-			//ºñ¹Ğ¹øÈ£ ÀÏÄ¡ È®ÀÎÇÏ´Â °ÍÀÌ ÇÊ¿ä
+			//ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜ í™•ì¸í•˜ëŠ” ê²ƒì´ í•„ìš”
 			panel.add(p1);
 			panel.add(p2);
 			panel.add(label6);
@@ -105,17 +196,17 @@ import javax.swing.text.Document;
 			this.setVisible(true);
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
-		File file = new File("D:\\java½Ç½À\\ChatProgram\\Writer.txt");
+		File file = new File("D:\\javaì‹¤ìŠµ\\ChatProgram\\Writer.txt");
 		String i1="0",i2="0",i3= "0";
 		 public MemberDTO getViewData(){
 		       
-		        //È­¸é¿¡¼­ »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ ³»¿ëÀ» ¾ò´Â´Ù.
+		        //í™”ë©´ì—ì„œ ì‚¬ìš©ìê°€ ì…ë ¥í•œ ë‚´ìš©ì„ ì–»ëŠ”ë‹¤.
 		        MemberDTO dto = new MemberDTO();
 		        String IP = T2.getText();
 		        String ID = T3.getText();
 		        String PW1 = pw1.getText();
 		       	
-		        //dto¿¡ ´ã´Â´Ù.
+		        //dtoì— ë‹´ëŠ”ë‹¤.
 		        dto.setIP(IP);
 		        dto.setID(ID);
 		        dto.setPassword(PW1);
@@ -129,14 +220,15 @@ import javax.swing.text.Document;
 	        boolean ok = dao.insertMember(dto);
 	       
 	        if(ok) {
-	            JOptionPane.showMessageDialog(this, "°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+	            JOptionPane.showMessageDialog(this, "ê°€ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 	            new Id(wt,cf);
 	        }else{ 
-	            JOptionPane.showMessageDialog(this, "°¡ÀÔÀÌ Á¤»óÀûÀ¸·Î Ã³¸®µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+	            JOptionPane.showMessageDialog(this, "ê°€ì…ì´ ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 	            new register();
 	        }
 	       	       
 	    }//insertMember
+<<<<<<< HEAD
 	
 		public void actionPerformed(ActionEvent e){
 			MemberDAO dao = new MemberDAO();
@@ -202,6 +294,8 @@ import javax.swing.text.Document;
 				}
 			}
 		}		
+=======
+>>>>>>> refs/remotes/origin/master
  }
 
  
@@ -212,21 +306,22 @@ class NewWindow extends JFrame implements ActionListener,ItemListener,MouseListe
 	String number[] = {"2","3","4"}; 
 	private JTextField t1;
 	private JPanel panel= new JPanel();
-	private JButton btn  = new JButton("»ı¼º");
-	private JButton btn1  = new JButton("ÀÔÀå");
+	private JButton btn  = new JButton("ìƒì„±");
+	private JButton btn1  = new JButton("ì…ì¥");
 	private JPanel Lpanel0 = new JPanel();
 	private JPanel Rpanel0 = new JPanel();
 	private JPanel panel1 = new JPanel();
-	private JLabel Flabel0 = new JLabel("Ã¤ÆÃÃ¢ÀÌ¸§");
-	private JLabel Slabel0 = new JLabel("ºñ¹Ğ¹øÈ£");
-	private JLabel Flabel01 = new JLabel("Ã¤ÆÃÃ¢ÀÌ¸§");
-	private JLabel Slabel01 = new JLabel("ºñ¹Ğ¹øÈ£");
+	private JLabel Flabel0 = new JLabel("ì±„íŒ…ì°½ì´ë¦„");
+	private JLabel Slabel0 = new JLabel("ë¹„ë°€ë²ˆí˜¸");
+	private JLabel Flabel01 = new JLabel("ì±„íŒ…ì°½ì´ë¦„");
+	private JLabel Slabel01 = new JLabel("ë¹„ë°€ë²ˆí˜¸");
 	private JCheckBox CHB = new  JCheckBox("");
 	private JTextField FT = new JTextField(20);
 	private JPasswordField PST = new JPasswordField(18);
 	private JTextField RFT = new JTextField(20);
 	private JPasswordField RSP = new JPasswordField(20);
 	private JTable table;
+<<<<<<< HEAD
 	}
 	
 	public Vector<String> makeInVector(String[] array) {
@@ -254,6 +349,43 @@ class NewWindow extends JFrame implements ActionListener,ItemListener,MouseListe
 	public void actionPerformed(ActionEvent e) {
 		
 
+=======
+	private Vector Header = new Vector<>(5);
+	private Vector<Vector> Contents =  new Vector <>(5);	
+	DefaultTableModel dtm;
+	private JScrollPane BSP;
+	private JComboBox CB = new JComboBox(number);
+	boolean password = false; //ë¹„ë°€ë²ˆí˜¸ ì„¤ì • ì—¬ë¶€
+	boolean fact = false;
+	static String pw;
+	static String pass;
+	int Rnum = 0; //ë°©ë²ˆí˜¸ ì„¤ì •
+	int ConN = 1;
+	boolean F = false; //íŒ¨ìŠ¤ì›Œë“œê°’  ë¹„êµë¥¼ RSPí†µí•´ì„œ í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+	
+	WriteThread wt;    
+    ClientFrame cf;
+    register rg;
+   
+	public NewWindow() {}
+	public NewWindow(WriteThread wt, ClientFrame cf){
+		this.wt = wt;
+        this.cf = cf;
+        if(Id.fact1 == false)
+        	new Id(wt,cf);
+       
+        this.setSize(640,350);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("CHAT");
+		
+		Lpanel0.setLayout(new FlowLayout());
+		Lpanel0.add(Flabel0);
+		Lpanel0.add(FT);
+		FT.addActionListener(this);
+		Flabel0.setLocation(200, 200);
+		Lpanel0.add(Slabel0);
+		
+>>>>>>> refs/remotes/origin/master
 	
 	
 }
@@ -261,9 +393,9 @@ class NewWindow extends JFrame implements ActionListener,ItemListener,MouseListe
 public class ClientFrame extends JFrame implements ActionListener{
        JTextArea txtA = new JTextArea();
        JTextField txtF = new JTextField(15);
-       JButton btnTransfer = new JButton("Àü¼Û");
-       JButton btnChb = new JButton("¹Ù²ÙÀÚ");
-       JButton btnExit = new JButton("´İ±â");
+       JButton btnTransfer = new JButton("ì „ì†¡");
+       JButton btnChb = new JButton("ë°”ê¾¸ì");
+       JButton btnExit = new JButton("ë‹«ê¸°");
        boolean isFirst=true;
        JPanel p1 = new JPanel();
        Socket socket;
@@ -272,7 +404,7 @@ public class ClientFrame extends JFrame implements ActionListener{
       
        
        public ClientFrame(Socket socket) {
-             super("Ã¤ÆÃÀÌ³ª ÇØº¼±î");
+             super("ì±„íŒ…ì´ë‚˜ í•´ë³¼ê¹Œ");
              this.socket = socket;
              wt = new WriteThread(this);
              //new Id();
@@ -283,7 +415,7 @@ public class ClientFrame extends JFrame implements ActionListener{
              //p1.add(btnChb);
              p1.add(btnExit);
              add("South", p1);          
-             //¸Ş¼¼Áö¸¦ Àü¼ÛÇÏ´Â Å¬·¡½º »ı¼º
+             //ë©”ì„¸ì§€ë¥¼ ì „ì†¡í•˜ëŠ” í´ë˜ìŠ¤ ìƒì„±
              btnTransfer.addActionListener(this);
              btnExit.addActionListener(this);
              setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -296,8 +428,8 @@ public class ClientFrame extends JFrame implements ActionListener{
        public void actionPerformed(ActionEvent e){
     	 
              String id = Id.getId();
-             if(e.getSource()==btnTransfer){//Àü¼Û¹öÆ° ´­·¶À» °æ¿ì
-                    //¸Ş¼¼Áö ÀÔ·Â¾øÀÌ Àü¼Û¹öÆ°¸¸ ´­·¶À» °æ¿ì
+             if(e.getSource()==btnTransfer){//ì „ì†¡ë²„íŠ¼ ëˆŒë €ì„ ê²½ìš°
+                    //ë©”ì„¸ì§€ ì…ë ¥ì—†ì´ ì „ì†¡ë²„íŠ¼ë§Œ ëˆŒë €ì„ ê²½ìš°
                     if(txtF.getText().equals("")){
                            return;
                     }                  
