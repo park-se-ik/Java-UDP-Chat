@@ -39,6 +39,7 @@ import javax.swing.text.Document;
 }
 
 
+
  class register extends JFrame implements ActionListener{
 		private JButton btn3 = new JButton("중복");//회원가입 들어갔을 때 만들기 한 것
 		private JButton btn4 = new JButton("중복");//회원가입 들어갔을 때 만들기 한 것
