@@ -1,80 +1,175 @@
-import java.io.*;
-import java.net.*;
-import java.util.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
 
-class MessageSender implements Runnable {
-    public final static int PORT = 7331;
-    private DatagramSocket sock;
-    private String hostname;
-    MessageSender(DatagramSocket s, String h) {
-        sock = s;
-        hostname = h;
-    }
-    private void sendMessage(String s) throws Exception {
-        byte buf[] = s.getBytes();
-        InetAddress address = InetAddress.getByName(hostname);
-        DatagramPacket packet = new DatagramPacket(buf, buf.length, address, PORT);
-        sock.send(packet);
-    }
-    public void run() {
-        boolean connected = false;
-        do {
-            try {
-                sendMessage("GREETINGS");
-                connected = true;
-            } catch (Exception e) {
-                
-            }
-        } while (!connected);
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
-            try {
-                while (!in.ready()) {
-                    Thread.sleep(100);
-                }
-                sendMessage(in.readLine());
-            } catch(Exception e) {
-                System.err.println(e);
-            }
-        }
-    }
+// 키보드로 전송문자열 입력받아 서버로 전송하는 스레드
+class WriteThread {
+	Socket socket;
+	Socket socket2;
+	ClientFrame cf;
+	String str;
+	String id;
+	
+	public WriteThread(ClientFrame cf) {
+		this.cf = cf;
+		this.socket = cf.socket;
+	}
+	
+	public void sendMsg() {
+		// 키보드로부터 읽어오기 위한 스트림객체 생성
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter pw = null;
+		try {
+
+			// 서버로 문자열 전송하기 위한 스트림객체 생성
+			pw = new PrintWriter(socket.getOutputStream(), true);
+
+			// 첫번째 데이터는 id 이다. 상대방에게 id와 함께 내 IP를 전송한다.
+			if (cf.isFirst == true) {
+				InetAddress iaddr = socket.getLocalAddress();
+				String ip = iaddr.getHostAddress();
+				getId();
+				System.out.println("ip:" + ip + "id:" + id);
+				str = "[" + id + "] 님 로그인 (" + ip + ")";
+			} else {
+				str = "[" + id + "] " + cf.txtF.getText();
+			}
+
+			// 입력받은 문자열 서버로 보내기
+
+			pw.println(str);
+
+		} catch (IOException ie) {
+
+			System.out.println(ie.getMessage());
+
+		} finally {
+
+			try {
+
+				if (br != null)
+					br.close();
+
+				// if(pw!=null) pw.close();
+
+				// if(socket!=null) socket.close();
+
+			} catch (IOException ie) {
+
+				System.out.println(ie.getMessage());
+
+			}
+
+		}
+
+	}
+
+	public void getId() {
+
+		id = Id.getId();
+
+	}
+
 }
-class MessageReceiver implements Runnable {
-    DatagramSocket sock;
-    byte buf[];
-    MessageReceiver(DatagramSocket s) {
-        sock = s;
-        buf = new byte[1024];
-    }
-    public void run() {
-        while (true) {
-            try {
-                DatagramPacket packet = new DatagramPacket(buf, buf.length);
-                sock.receive(packet);
-                String received = new String(packet.getData(), 0, packet.getLength());
-                System.out.println(received);
-            } catch(Exception e) {
-                System.err.println(e);
-            }
-        }
-    }
+
+//서버가 보내온 문자열을 전송받는 스레드
+
+class ReadThread extends Thread {
+
+	Socket socket;
+	ClientFrame cf;
+
+	public ReadThread(Socket socket, ClientFrame cf) {
+
+		this.cf = cf;
+
+		this.socket = socket;
+
+	}
+
+	public void run() {
+
+		BufferedReader br = null;
+
+		try {
+
+			// 서버로부터 전송된 문자열 읽어오기 위한 스트림객체 생성
+
+			br = new BufferedReader(
+
+					new InputStreamReader(socket.getInputStream()));
+
+			while (true) {
+
+				// 소켓으로부터 문자열 읽어옴
+
+				String str = br.readLine();
+
+				if (str == null) {
+
+					System.out.println("접속이 끊겼음");
+
+					break;
+
+				}
+
+				// 전송받은 문자열 화면에 출력
+
+				// System.out.println("[server] " + str);
+
+				cf.txtA.append(str + "\n");
+
+			}
+
+		} catch (IOException ie) {
+
+			System.out.println(ie.getMessage());
+
+		} finally {
+
+			try {
+
+				if (br != null)
+					br.close();
+
+				if (socket != null)
+					socket.close();
+
+			} catch (IOException ie) {
+			}
+
+		}
+
+	}
+
 }
-public class ChatClient {
-    
-    public static void main(String args[]) throws Exception {
-        String host = null;
-        if (args.length < 1) {
-            System.out.println("Usage: java ChatClient <server_hostname>");
-            System.exit(0);
-        } else {
-            host = args[0];
-        }
-        DatagramSocket socket = new DatagramSocket();
-        MessageReceiver r = new MessageReceiver(socket);
-        MessageSender s = new MessageSender(socket, host);
-        Thread rt = new Thread(r);
-        Thread st = new Thread(s);
-        rt.start(); st.start();
-    }
+
+public class MultiChatClient {
+
+	public static void main(String[] args) {
+
+		Socket socket = null;
+
+		ClientFrame cf;
+
+		try {
+
+			socket = new Socket("localhost", 9915);
+
+			System.out.println("연결성공!");
+
+			cf = new ClientFrame(socket);
+
+			new ReadThread(socket, cf).start();
+
+			} catch (IOException ie) {
+				System.out.println(ie.getMessage());
+			}
+
+	}
+
 }

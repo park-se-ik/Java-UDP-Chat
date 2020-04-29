@@ -1,4 +1,4 @@
-package CHAT;
+package Protect;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -17,7 +17,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane; //寃쎄퀬李쎈찓�떆吏�
+import javax.swing.JOptionPane; //경고창메시지
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -30,15 +30,12 @@ import javax.swing.text.Document;
 
  class Id extends JFrame implements ActionListener{
 	 	
-<<<<<<< HEAD
-        
-=======
         private JPanel card1 = new JPanel();
 	   	private JPanel panelA = new JPanel();
 	   	private JPanel panelB = new JPanel();
 	   	private JPanel card2 = new JPanel();
-	   	private JButton btn = new JButton("�쉶�썝媛��엯");//�쉶�썝媛��엯''
-	   	private JButton btn1 = new JButton("濡쒓렇�씤");//濡쒓렇�씤
+	   	private JButton btn = new JButton("회원가입");//회원가입''
+	   	private JButton btn1 = new JButton("로그인");//로그인
 	   	private JLabel label1 = new JLabel("ID   :   ");
 	   	private JLabel label2 = new JLabel("PWD : ");
 	   	static JTextField T1 = new JTextField(20);
@@ -48,7 +45,7 @@ import javax.swing.text.Document;
 		static boolean fact1 = false;
 		
 		static String i1= "0",i2 = "0";
-		File file = new File("D:\\java�떎�뒿\\ChatProgram\\Writer.txt");
+		File file = new File("D:\\java실습\\ChatProgram\\Writer.txt");
 		
 		ClientFrame cf;
 	   	WriteThread wt;    
@@ -82,22 +79,22 @@ import javax.swing.text.Document;
     	  
     	  
     	  
-    	   if(e.getSource() == btn){ //btn�� �쉶�썝媛��엯 
-    		  //媛믪쓣 諛쏆븘�꽌 �뙆�씪�냽�뿉 �엯�젰�빐�빞�븿
+    	   if(e.getSource() == btn){ //btn은 회원가입 
+    		  //값을 받아서 파일속에 입력해야함
     		   register rg = new register();
 	    		try{ 
-	    			this.hide();	//�벐�뜕寃껊뱾�쓣 �닲湲곌린
+	    			this.hide();	//쓰던것들을 숨기기
 	    			//i1 = T1.getText();
 	    			//i2 = P1.getText();    	
-	    			rg.setVisible(true); //register �겢�옒�뒪瑜� �떎�뻾�빐�빞 �쉶�썝媛��엯�쓣 �븷�닔�엳怨� �뿬湲곗꽌 �븘�씠�뵒媛� �엳�뒗 �븘�씠�뵒�씤吏� �븘�땶吏� 寃��궗瑜� �븳�떎.
+	    			rg.setVisible(true); //register 클래스를 실행해야 회원가입을 할수있고 여기서 아이디가 있는 아이디인지 아닌지 검사를 한다.
 	    		   	if(i1 == "0"){
-						JOptionPane.showMessageDialog(null, "�엯�젰�쓣 �븯�뀛�빞 �빀�땲�떎.");
+						JOptionPane.showMessageDialog(null, "입력을 하셔야 합니다.");
 					}
 	    		}catch(NullPointerException e1) {
 	    			System.out.println(e);
 	    		}
     	   }
-    	   else if(e.getSource()== btn1){//濡쒓렇�씤
+    	   else if(e.getSource()== btn1){//로그인
     		   MemberDAO dao = new MemberDAO();
     		   String ID = T1.getText();
     		   String PW = P1.getText();
@@ -108,20 +105,19 @@ import javax.swing.text.Document;
     				   new NewWindow(wt,cf);
     			   }
     			   else {
-    				   JOptionPane.showMessageDialog(null, "鍮꾨�踰덊샇媛� �씪移섑븯吏��븡�뒿�땲�떎.");
+    				   JOptionPane.showMessageDialog(null, "비밀번호가 일치하지않습니다.");
     			   }
     				  
     		   }
     		   else {
-    			   JOptionPane.showMessageDialog(null, "�엯�젰�븯�떊 ID�� �씪移섑븯�뒗 �젙蹂닿� �뾾�뒿�땲�떎.");
+    			   JOptionPane.showMessageDialog(null, "입력하신 ID와 일치하는 정보가 없습니다.");
     		   }
     		  
     		   if(i1 == "" || i2 ==""){
-					JOptionPane.showMessageDialog(null, "�엯�젰�쓣 �븯�뀛�빞 �빀�땲�떎.");
+					JOptionPane.showMessageDialog(null, "입력을 하셔야 합니다.");
 				}
                
     	   }
->>>>>>> refs/remotes/origin/master
             
        }
        static public String getId(){
@@ -130,15 +126,16 @@ import javax.swing.text.Document;
 }
 
 
+	
 
  class register extends JFrame implements ActionListener{
-		private JButton btn3 = new JButton("以묐났");//�쉶�썝媛��엯 �뱾�뼱媛붿쓣 �븣 留뚮뱾湲� �븳 寃�
-		private JButton btn4 = new JButton("以묐났");//�쉶�썝媛��엯 �뱾�뼱媛붿쓣 �븣 留뚮뱾湲� �븳 寃�
+		private JButton btn3 = new JButton("중복");//회원가입 들어갔을 때 만들기 한 것
+		private JButton btn4 = new JButton("중복");//회원가입 들어갔을 때 만들기 한 것
 	 	private JLabel label3 = new JLabel("IP  :  ");
 		private JLabel label4 = new JLabel("ID  :  ");
 		private JLabel label5 = new JLabel("PWD  :  ");
-		private JLabel label6 = new JLabel("PWD�솗�씤 : ");
-		private JButton btn5 = new JButton("�쉶�썝媛��엯");//�쉶�썝媛��엯 �뱾�뼱媛붿쓣 �븣 留뚮뱾湲� �븳 寃�
+		private JLabel label6 = new JLabel("PWD확인 : ");
+		private JButton btn5 = new JButton("회원가입");//회원가입 들어갔을 때 만들기 한 것
 		private JTextField T2 = new JTextField(15);
 		private JTextField T3 = new JTextField(15) ;
 		private JTextField pw1 = new JPasswordField(20);
@@ -159,7 +156,7 @@ import javax.swing.text.Document;
 		WriteThread wt;
 		ClientFrame cf;
 		public register() {
-			this.setTitle("�쉶�썝媛��엯");
+			this.setTitle("회원가입");
 			this.setSize(320,220);
 			
 			panel.add(label3);
@@ -184,7 +181,7 @@ import javax.swing.text.Document;
 			p2.setPreferredSize(new Dimension(350,30));
 			
 			
-			//鍮꾨�踰덊샇 �씪移� �솗�씤�븯�뒗 寃껋씠 �븘�슂
+			//비밀번호 일치 확인하는 것이 필요
 			panel.add(p1);
 			panel.add(p2);
 			panel.add(label6);
@@ -196,17 +193,17 @@ import javax.swing.text.Document;
 			this.setVisible(true);
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
-		File file = new File("D:\\java�떎�뒿\\ChatProgram\\Writer.txt");
+		File file = new File("D:\\java실습\\ChatProgram\\Writer.txt");
 		String i1="0",i2="0",i3= "0";
 		 public MemberDTO getViewData(){
 		       
-		        //�솕硫댁뿉�꽌 �궗�슜�옄媛� �엯�젰�븳 �궡�슜�쓣 �뼸�뒗�떎.
+		        //화면에서 사용자가 입력한 내용을 얻는다.
 		        MemberDTO dto = new MemberDTO();
 		        String IP = T2.getText();
 		        String ID = T3.getText();
 		        String PW1 = pw1.getText();
 		       	
-		        //dto�뿉 �떞�뒗�떎.
+		        //dto에 담는다.
 		        dto.setIP(IP);
 		        dto.setID(ID);
 		        dto.setPassword(PW1);
@@ -220,16 +217,15 @@ import javax.swing.text.Document;
 	        boolean ok = dao.insertMember(dto);
 	       
 	        if(ok) {
-	            JOptionPane.showMessageDialog(this, "등록되었습니다.");
+	            JOptionPane.showMessageDialog(this, "가입이 완료되었습니다.");
 	            new Id(wt,cf);
 	        }else{ 
-	            JOptionPane.showMessageDialog(this, "중복된 아이디가 존재합니다.");
+	            JOptionPane.showMessageDialog(this, "가입이 정상적으로 처리되지 않았습니다.");
 	            new register();
 	        }
 	       	       
 	    }//insertMember
-
-	
+		
 		public void actionPerformed(ActionEvent e){
 			MemberDAO dao = new MemberDAO();
 			if(e.getSource()== btn3) { //중복
@@ -294,8 +290,6 @@ import javax.swing.text.Document;
 				}
 			}
 		}		
-=======
->>>>>>> refs/remotes/origin/master
  }
 
  
@@ -306,22 +300,106 @@ class NewWindow extends JFrame implements ActionListener,ItemListener,MouseListe
 	String number[] = {"2","3","4"}; 
 	private JTextField t1;
 	private JPanel panel= new JPanel();
-	private JButton btn  = new JButton("�깮�꽦");
-	private JButton btn1  = new JButton("�엯�옣");
+	private JButton btn  = new JButton("생성");
+	private JButton btn1  = new JButton("입장");
 	private JPanel Lpanel0 = new JPanel();
 	private JPanel Rpanel0 = new JPanel();
 	private JPanel panel1 = new JPanel();
-	private JLabel Flabel0 = new JLabel("梨꾪똿李쎌씠由�");
-	private JLabel Slabel0 = new JLabel("鍮꾨�踰덊샇");
-	private JLabel Flabel01 = new JLabel("梨꾪똿李쎌씠由�");
-	private JLabel Slabel01 = new JLabel("鍮꾨�踰덊샇");
+	private JLabel Flabel0 = new JLabel("채팅창이름");
+	private JLabel Slabel0 = new JLabel("비밀번호");
+	private JLabel Flabel01 = new JLabel("채팅창이름");
+	private JLabel Slabel01 = new JLabel("비밀번호");
 	private JCheckBox CHB = new  JCheckBox("");
 	private JTextField FT = new JTextField(20);
 	private JPasswordField PST = new JPasswordField(18);
 	private JTextField RFT = new JTextField(20);
 	private JPasswordField RSP = new JPasswordField(20);
 	private JTable table;
-<<<<<<< HEAD
+	private Vector Header = new Vector<>(5);
+	private Vector<Vector> Contents =  new Vector <>(5);	
+	DefaultTableModel dtm;
+	private JScrollPane BSP;
+	private JComboBox CB = new JComboBox(number);
+	boolean password = false; //비밀번호 설정 여부
+	boolean fact = false;
+	static String pw;
+	static String pass;
+	int Rnum = 0; //방번호 설정
+	int ConN = 1;
+	boolean F = false; //패스워드값  비교를 RSP통해서 하기 위한 변수
+	
+	WriteThread wt;    
+    ClientFrame cf;
+    register rg;
+   
+	public NewWindow() {}
+	public NewWindow(WriteThread wt, ClientFrame cf){
+		this.wt = wt;
+        this.cf = cf;
+        if(Id.fact1 == false)
+        	new Id(wt,cf);
+       
+        this.setSize(640,350);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("CHAT");
+		
+		Lpanel0.setLayout(new FlowLayout());
+		Lpanel0.add(Flabel0);
+		Lpanel0.add(FT);
+		FT.addActionListener(this);
+		Flabel0.setLocation(200, 200);
+		Lpanel0.add(Slabel0);
+		Lpanel0.add(CHB);
+		CHB.addActionListener(this);
+		CHB.addItemListener(this);
+		Lpanel0.add(PST);
+		PST.setEditable(fact);
+		PST.addActionListener(this);
+		CB.setBounds(50,50,90,20);
+		CB.addActionListener(this);
+		Lpanel0.add(CB);
+		Lpanel0.add(btn);
+		btn.addActionListener(this);
+		Lpanel0.setPreferredSize(new Dimension(300,200));
+	
+		
+		Header.add("번호");
+		Header.add("채팅방이름");
+		Header.add("접속중인 인원수");
+		Header.add("최대 접속 가능수");
+		Header.add("비밀번호 여부");
+		dtm = new DefaultTableModel(Contents,Header) {
+			public boolean isCellEditable(int row, int column) {
+	        if (column >= 0) {
+	            return false;
+	        } else {
+	            return true;
+	        }
+	    }};
+		table = new JTable(dtm);
+		BSP = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		Rpanel0.add(BSP);
+		BSP.setPreferredSize(new Dimension(300,200));
+		Rpanel0.add(Flabel01);
+		Rpanel0.add(RFT);
+		Rpanel0.add(Slabel01);
+		Rpanel0.add(RSP);
+		RSP.setEditable(F);
+		RSP.addActionListener(this);
+		Rpanel0.add(btn1);
+		btn1.addActionListener(this);
+		Rpanel0.setSize(10,10);
+		Rpanel0.setPreferredSize(new Dimension(300,300));
+		
+		panel.setLayout(new BorderLayout());
+		panel.add(Lpanel0,BorderLayout.WEST);
+		panel.add(Rpanel0,BorderLayout.CENTER);
+		
+		table.addMouseListener(this);
+		this.add(panel);
+		if(Id.fact1)
+			this.setVisible(true);
 	}
 	
 	public Vector<String> makeInVector(String[] array) {
@@ -347,45 +425,100 @@ class NewWindow extends JFrame implements ActionListener,ItemListener,MouseListe
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		Vector bowl = new Vector<>(5);
+		/*if(e.getSource()== CHB) {
+			PST.setEditable(fact);
+		}*/
 		
-
-=======
-	private Vector Header = new Vector<>(5);
-	private Vector<Vector> Contents =  new Vector <>(5);	
-	DefaultTableModel dtm;
-	private JScrollPane BSP;
-	private JComboBox CB = new JComboBox(number);
-	boolean password = false; //鍮꾨�踰덊샇 �꽕�젙 �뿬遺�
-	boolean fact = false;
-	static String pw;
-	static String pass;
-	int Rnum = 0; //諛⑸쾲�샇 �꽕�젙
-	int ConN = 1;
-	boolean F = false; //�뙣�뒪�썙�뱶媛�  鍮꾧탳瑜� RSP�넻�빐�꽌 �븯湲� �쐞�븳 蹂��닔
+		if( e.getSource() == btn  ) {// 생성버튼 사용시
+				if( password ==true ) { //라디오버튼을 누른 상태	
+						String s1 = FT.getText();
+						int a = ++Rnum;
+						bowl.add(makeInVector(new String[] {""+a,""+s1,"0",""+(String)CB.getSelectedItem(),"O"}));
+						pw = PST.getText();
+						for(int i = 0; i<5;i++) {
+							Contents.addAll(bowl);
+							bowl.clear();
+						}
+						dtm.setDataVector(Contents, Header);
+						FT.setText("");
+						PST.setText("");
+					}
+				else {
+					/*input[0] = ++Rnum;
+					input[1] = FT.getText();	
+					input[2] = 0;
+					input[3] = CB.getSelectedItem().toString();
+					input[4] = "X";
+					dtm.addRow(input);*/
+					int a = ++Rnum;
+					String s1 = FT.getText();
+					
+					bowl.add(makeInVector(new String[] {""+Rnum,""+s1,"0",""+(String)CB.getSelectedItem(),"X"}));
+					for(int i = 0; i<5;i++) {
+						Contents.addAll(bowl);
+						bowl.clear();
+					}
+						
+					dtm.setDataVector(Contents, Header);
+					FT.setText("");
+					PST.setText("");
+				
+					
+				}
+				
+		}
+		if(F == true) {
+			 if (e.getSource() == btn1){//입장
+				 	
+				 if(pw.equals(RSP.getText())) {
+						wt.sendMsg();
+					 	cf.isFirst = false;
+					 	cf.setVisible(true);
+					 	//this.hide();
+					 	F = false;
+						PST.setEditable(F);
+		               //this.hide();
+						this.hide();	//쓰던것들을 숨기기
+						
+					 
+				 }
+			 }
+		}
+		
+		
+		
+		
+	}
 	
-	WriteThread wt;    
-    ClientFrame cf;
-    register rg;
-   
-	public NewWindow() {}
-	public NewWindow(WriteThread wt, ClientFrame cf){
-		this.wt = wt;
-        this.cf = cf;
-        if(Id.fact1 == false)
-        	new Id(wt,cf);
+	public void mouseClicked(MouseEvent e) {
+		 int row = table.getSelectedRow();
+		 String value = (String)dtm.getValueAt(row,1) ;
+		 pass = (String)dtm.getValueAt(row,4) ;
+		 RFT.setText(""+value);
+		 if(pass.equals("O")) {
+			 F = true;
+			 RSP.setEditable(F);
+			
+		 }
+		
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+    @Override//마우스가 버튼 안으로 들어오면 빨간색으로 바뀜
+    public void mouseEntered(MouseEvent e) {
        
-        this.setSize(640,350);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("CHAT");
-		
-		Lpanel0.setLayout(new FlowLayout());
-		Lpanel0.add(Flabel0);
-		Lpanel0.add(FT);
-		FT.addActionListener(this);
-		Flabel0.setLocation(200, 200);
-		Lpanel0.add(Slabel0);
-		
->>>>>>> refs/remotes/origin/master
+    }
+    @Override//마우스가 버튼 밖으로 나가면 노란색으로 바뀜
+    public void mouseExited(MouseEvent e) {
+        
+    }
+
 	
 	
 }
@@ -393,9 +526,9 @@ class NewWindow extends JFrame implements ActionListener,ItemListener,MouseListe
 public class ClientFrame extends JFrame implements ActionListener{
        JTextArea txtA = new JTextArea();
        JTextField txtF = new JTextField(15);
-       JButton btnTransfer = new JButton("�쟾�넚");
-       JButton btnChb = new JButton("諛붽씀�옄");
-       JButton btnExit = new JButton("�떕湲�");
+       JButton btnTransfer = new JButton("전송");
+       JButton btnChb = new JButton("바꾸자");
+       JButton btnExit = new JButton("닫기");
        boolean isFirst=true;
        JPanel p1 = new JPanel();
        Socket socket;
@@ -404,7 +537,7 @@ public class ClientFrame extends JFrame implements ActionListener{
       
        
        public ClientFrame(Socket socket) {
-             super("梨꾪똿�씠�굹 �빐蹂쇨퉴");
+             super("채팅이나 해볼까");
              this.socket = socket;
              wt = new WriteThread(this);
              //new Id();
@@ -415,7 +548,7 @@ public class ClientFrame extends JFrame implements ActionListener{
              //p1.add(btnChb);
              p1.add(btnExit);
              add("South", p1);          
-             //硫붿꽭吏�瑜� �쟾�넚�븯�뒗 �겢�옒�뒪 �깮�꽦
+             //메세지를 전송하는 클래스 생성
              btnTransfer.addActionListener(this);
              btnExit.addActionListener(this);
              setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -428,8 +561,8 @@ public class ClientFrame extends JFrame implements ActionListener{
        public void actionPerformed(ActionEvent e){
     	 
              String id = Id.getId();
-             if(e.getSource()==btnTransfer){//�쟾�넚踰꾪듉 �닃���쓣 寃쎌슦
-                    //硫붿꽭吏� �엯�젰�뾾�씠 �쟾�넚踰꾪듉留� �닃���쓣 寃쎌슦
+             if(e.getSource()==btnTransfer){//전송버튼 눌렀을 경우
+                    //메세지 입력없이 전송버튼만 눌렀을 경우
                     if(txtF.getText().equals("")){
                            return;
                     }                  
