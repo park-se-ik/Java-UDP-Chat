@@ -1,4 +1,4 @@
-package CHAT;
+
 
 public class MemberDTO {
 	private String NO;
