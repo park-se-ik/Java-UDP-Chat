@@ -8,9 +8,8 @@ public class ChatClient {
 	//Id id;
 	
 	public static String getloginID() {
-		new Id();
 		String loginID = "";
-
+		new Id();
 			try {
 				while (Id.fact1 == false) {}  //로그인 확인 될때까지 무한루프
 				loginID = Id.getId();  //로그인 확인시 Id값 받기
@@ -19,12 +18,10 @@ public class ChatClient {
 			}
 			
 		return loginID;
-
 	}
 
 	public static void main(String args[]) {
 		String id = getloginID();
-		//if(!id.equals("")) {
 			try {
 				if (args.length == 0) {
 					ClientThread thread = new ClientThread();
@@ -39,7 +36,7 @@ public class ChatClient {
 				System.out.println(e);
 			}
 		}
-	//}
+	
 }
 
 class Id extends JFrame implements ActionListener{
@@ -106,7 +103,7 @@ class Id extends JFrame implements ActionListener{
 		   MemberDAO dao = new MemberDAO();
 		   String ID = T1.getText();
 		   String PW = P1.getText();
-		   if(dao.getMemberDTOid(ID)) {
+		   if(dao.getMemberDTOid(ID)) {//로그인이 됬다
 			   if(dao.getMemberDTOpw(PW)) {
 				   this.hide();	
 				   fact1 = true;
@@ -129,6 +126,7 @@ class Id extends JFrame implements ActionListener{
 	 
    }
    static public String getId(){
+		
          return T1.getText();
    }
 }
