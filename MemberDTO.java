@@ -12,7 +12,6 @@ public class MemberDTO {
 	public void setNO(String NO) {
 		this.NO = NO;
 	}
-	
 	public String getIP() {
 		return IP;
 	}

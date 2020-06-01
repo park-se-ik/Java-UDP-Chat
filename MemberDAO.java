@@ -10,6 +10,7 @@ public class MemberDAO {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	public MemberDAO() {}
 	
+	
 	public Connection getConn() {
 		Connection con = null;
 		try {
