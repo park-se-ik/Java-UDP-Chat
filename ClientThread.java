@@ -1,9 +1,20 @@
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
+import java.util.Vector;
+
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class ClientThread extends Thread {
 	private WaitRoomDisplay client_thread_waitRoom;
@@ -11,6 +22,9 @@ public class ClientThread extends Thread {
 	private Socket client_thread_sock;
 	private DataInputStream client_thread_in;
 	private DataOutputStream client_thread_out;
+	private ObjectOutputStream client_thread_imo_out;
+	private ObjectInputStream client_thread_imo_in1;
+	
 	private StringBuffer client_thread_buffer;
 	private Thread thisThread;
 	private String client_thread_loginID;
@@ -38,6 +52,10 @@ public class ClientThread extends Thread {
 	private static final int 송신자요청 = 1050;
 	private static final int 송신자수락 = 1051;
 
+	private static final int 이모티콘수락 = 1052;
+	private static final int 이모티콘거절 = 1053;
+
+	
 	private static final int 수신자요청 = 1060;
 	private static final int 수신자수락 = 1061;
 	private static final int 수신자거절 = 1062;
@@ -275,6 +293,32 @@ public class ClientThread extends Thread {
 							client_thread_waitRoom.message.requestFocusInWindow();
 						else
 							client_thread_chatRoom.message.requestFocusInWindow();
+					}
+					break;
+				}
+				case 이모티콘수락: {//해야할것 1.받아서 스트링 값을 바이트로 변환 2. 바이트를 파일로 변환
+					//3.textaread인 messages에다가 append
+					String id = st.nextToken();
+					String a = null;
+					
+					
+					int room_Number = Integer.parseInt(st.nextToken());
+					try {
+						String data = st.nextToken();
+						byte[] emo = new byte [(int)data.length()];
+						Object AA = client_thread_imo_in1.readObject();
+						
+						emo = data.getBytes();
+						
+						client_thread_chatRoom.messages.append(id + " : " + AA + "\n");
+						if (id.equals(client_thread_loginID)) {
+							client_thread_chatRoom.message.setText("");
+						}
+						client_thread_chatRoom.message.requestFocusInWindow();
+						
+
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
 					break;
 				}
@@ -524,6 +568,32 @@ public class ClientThread extends Thread {
 			client_thread_buffer.append(" : ");
 			client_thread_buffer.append(data);
 			send(client_thread_buffer.toString());
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+	}
+	public void requesetSendEmoticon(int i) {
+		Image kakao  = Toolkit.getDefaultToolkit().getImage("D:\\Downloads\\kakaofriend.jpg");
+		Image kakao1 = kakao.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon Fkakao = new ImageIcon(kakao1);
+		
+		Image Skakao  = Toolkit.getDefaultToolkit().getImage("D:\\Downloads\\kaka.png");
+		Image Skakao1 = kakao.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon SFkakao = new ImageIcon(Skakao1);
+		
+		try {
+			if(i == 1) {
+				client_thread_buffer.setLength(0);
+				client_thread_buffer.append(이모티콘수락);
+				client_thread_buffer.append(" : ");
+				client_thread_buffer.append(client_thread_loginID);
+				client_thread_buffer.append(" : ");
+				client_thread_buffer.append(client_thread_room_Number);
+				client_thread_buffer.append(" : ");
+				client_thread_buffer.append(Fkakao);
+				send(client_thread_buffer.toString());
+			}
+			
 		} catch (IOException e) {
 			System.out.println(e);
 		}

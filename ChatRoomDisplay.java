@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.io.*;
+
 import java.awt.event.*;
 import java.util.*;
 
@@ -11,16 +13,24 @@ class ChatRoomDisplay extends JFrame implements ActionListener, KeyListener, Lis
 	private String idTo;
 	private boolean isSelected;
 	public boolean isAdmin;
-
+	private ObjectOutputStream emoticon_out;
+	private ObjectInputStream inputstream;
 	private JLabel roomer;
 	public JList roomerInfo;
-	private JButton forceOut, sendWord, sendFile, quitRoom;
+	private JButton forceOut, sendWord, sendFile, quitRoom,emoticon;
 	private Font font;
 	private JViewport view;
 	private JScrollPane jspane;
 	public JTextArea messages;
 	public JTextField message;
-
+	Image kakao  = Toolkit.getDefaultToolkit().getImage("D:\\Downloads\\kakaofriend.jpg");
+	Image kakao1 = kakao.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+	public ImageIcon Fkakao = new ImageIcon(kakao1);
+	
+	Image Skakao  = Toolkit.getDefaultToolkit().getImage("D:\\Downloads\\kaka.png");
+	Image Skakao1 = kakao.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+	public ImageIcon SFkakao = new ImageIcon(Skakao1);
+	
 	public ChatRoomDisplay(ClientThread thread) {
 		super("대화방");
 
@@ -90,6 +100,8 @@ class ChatRoomDisplay extends JFrame implements ActionListener, KeyListener, Lis
 		sendFile.setBounds(445, 275, 100, 30);
 		sendFile.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
 		c.add(sendFile);
+		
+		
 
 		quitRoom = new JButton(" 나 가 기 ");
 		quitRoom.setFont(font);
@@ -99,7 +111,7 @@ class ChatRoomDisplay extends JFrame implements ActionListener, KeyListener, Lis
 		c.add(quitRoom);
 
 		Dimension dim = getToolkit().getScreenSize();
-		setSize(580, 400);
+		setSize(580, 430);
 		setLocation(dim.width / 2 - getWidth() / 2, dim.height / 2 - getHeight() / 2);
 		show();
 
@@ -170,7 +182,33 @@ class ChatRoomDisplay extends JFrame implements ActionListener, KeyListener, Lis
 			if ((idTo = JOptionPane.showInputDialog("상대방 닉네임 : ")) != null) {
 				chat_room_thread.requestSendFile(idTo);
 			}
+		}else if(ae.getSource() == emoticon) {
+			new Emoticon();
+			String a;
+			byte[] emo = new byte[10000];
+			
+
+			
+			if(Emoticon.find) {
+				if(Emoticon.getImg()==1) {
+					
+					//byte[] emo1 = extractBytes("받은파일/이모티콘.png");  //이미지를 바이트로 변환
+				
+				}
+				else if(Emoticon.getImg()==2) {
+					//byte[] emo2 = extractBytes("받은파일/kaka.png");
+				}
+					
+					
+			}
+				
+				
 		}
+	}
+
+	private byte[] extractBytes(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public void stateChanged(ChangeEvent e) {
